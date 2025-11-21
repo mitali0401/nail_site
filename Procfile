@@ -1,1 +1,1 @@
-web: gunicorn nail_site.wsgi
+web: gunicorn mysite.wsgi
