@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+  <section class="section contact-hero">
+    <div class="page-shell">
+      <header class="section-header text-center">
+        <p class="section-eyebrow">Support</p>
+        <h1 class="section-title">We’re here for every mani emergency</h1>
+        <p class="section-description">
+          Call or submit the form with your order ID to request updates or cancellations.
+          Kindly note that we can’t cancel once your set has been processed.
+        </p>
+      </header>
+    </div>
+  </section>
+
+  <section class="section contact-section">
+    <div class="page-shell contact-layout">
+      <form method="post" id="contactForm" class="surface-card contact-form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="hello@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input class="form-input" type="text" id="phone" name="phone" placeholder="+91 888 888 8888" required>
+        </div>
+        <div class="form-group">
+          <label for="comment">Comment</label>
+          <textarea class="form-textarea" id="comment" name="comment" placeholder="Let us know how we can help" required></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Send Message (Server)</button>
+          <button class="btn btn-secondary" type="button" id="sendWhatsApp">Send via WhatsApp</button>
+        </div>
+      </form>
+
+      <div class="surface-card contact-info">
+        <p class="contact-eyebrow">Prefer to chat?</p>
+        <h3>Call or WhatsApp</h3>
+        <p class="contact-description">
+          Have questions or need help fast? Reach us directly and we’ll guide you through sizing,
+          shipping, or order updates.
+        </p>
+        <ul class="contact-list">
+          <li>
+            <!-- tel: link opens phone dialer -->
+            <a href="tel:+918780308551" aria-label="Call us">📞 Call +91 87803 08551</a>
+          </li>
+          <li>
+            <!-- WhatsApp link will be created by JS; also include data-number for easy reuse -->
+            <a href="#" id="waLink" data-number="918780308551" aria-label="WhatsApp us">💬 WhatsApp +91 87803 08551</a>
+          </li>
+        </ul>
+        <p class="contact-note">
+          Hours: Monday–Saturday, 10:00 AM – 7:00 PM IST
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inline script to handle WhatsApp prefill and form fallback -->
+  <script>
+(function(){
+
+  const waBtn = document.getElementById('sendWhatsApp');
+  const waLink = document.getElementById('waLink');
+  const waNumber = "918780308551"; // your WhatsApp number
+
+  function buildMessage(){
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const comment = document.getElementById('comment').value.trim();
+
+    let msg =
+    "Hi, I need help with my order.\n" +
+    "Name: " + name + "\n" +
+    "Phone: " + phone + "\n" +
+    "Email: " + email + "\n" +
+    "Message: " + comment;
+
+    return msg;
+  }
+
+  function openWhatsApp(){
+    const msg = buildMessage();
+    const waUrl = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(msg);
+
+    // 🔥 DIRECT OPEN — no new tab, no popup
+    window.location.href = waUrl;
+  }
+
+  // WhatsApp button
+  waBtn.addEventListener('click', function(){
+    openWhatsApp();
+  });
+
+  // WhatsApp link (contact list)
+  waLink.addEventListener('click', function(e){
+    e.preventDefault();
+    openWhatsApp();
+  });
+
+})();
+</script>
+
+{% endblock %}

@@ -1,0 +1,167 @@
+/* ===================== SECTION BACKGROUND ===================== */
+.seller-section {
+    background: linear-gradient(10deg, rgba(1, 1, 1, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(10, 10, 10, 1) 100%);
+    padding: 80px 20px 100px;
+    color: black;
+}
+
+/* ===================== TITLE ===================== */
+.seller-title {
+    font-size: 48px;
+    font-family: "Quintessential", serif;
+    text-align: left;
+    margin-left: 60px;
+    margin-bottom: 40px;
+}
+
+/* ===================== GRID LAYOUT ===================== */
+.seller-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 35px;
+    padding: 0 40px;
+}
+
+/* ===================== PRODUCT CARD ===================== */
+.seller-card {
+    text-align: center;
+}
+
+.seller-image {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
+.seller-image:hover {
+    box-shadow: 0 0 40px rgba(40, 40, 40, 0.6);
+    transform: scale(1.02);
+}
+
+.seller-name {
+    font-size: 22px;
+    font-family: "Quintessential", serif;
+    margin-top: 10px;
+}
+
+.seller-brand,
+.seller-price {
+    margin-top: -6px;
+    font-size: 16px;
+}
+
+/* ===================== BACK BUTTON ===================== */
+.btn-wrapper {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.shop-btn {
+    background: transparent;
+    height: 50px;
+    width: 180px;
+    font-size: 20px;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.shop-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+/* ===================== NAVBAR FIX ===================== */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(5px);
+    box-shadow: none !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: white !important;
+}
+
+.navbar .nav-link:hover {
+    color: #00ffcc !important;
+}
+
+/* ===================== RESPONSIVE DESIGN ===================== */
+
+/* 🔹 Tablet (1024px - 768px) */
+@media (max-width: 1024px) {
+    .seller-title {
+        font-size: 40px;
+        margin-left: 20px;
+        text-align: center;
+    }
+
+    .seller-grid {
+        padding: 0 20px;
+        gap: 25px;
+    }
+
+    .seller-image {
+        height: 280px;
+    }
+}
+
+/* 🔹 Mobile (below 768px) */
+@media (max-width: 768px) {
+
+    .seller-section {
+        padding: 50px 15px 80px;
+    }
+
+    .seller-title {
+        font-size: 32px;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .seller-grid {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+        gap: 30px;
+    }
+
+    .seller-image {
+        height: 260px;
+    }
+
+    .seller-name {
+        font-size: 18px;
+    }
+
+    .shop-btn {
+        width: 150px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
+/* 🔹 Small Mobile (below 480px) */
+@media (max-width: 480px) {
+
+    .seller-title {
+        font-size: 28px;
+    }
+
+    .seller-image {
+        height: 230px;
+    }
+
+    .seller-name {
+        font-size: 16px;
+    }
+
+    .seller-brand,
+    .seller-price {
+        font-size: 14px;
+    }
+}

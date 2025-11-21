@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/all.css' %}">
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="product-page">
+
+    <h1 class="page-title">All Products</h1>
+
+    <div class="product-container">
+        {% for product in products %}
+        <div class="product-card">
+            <a href="{% url 'details' product.id %}">
+                <img class="product-img" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+            <p class="product-name">{{ product.name }}</p>
+            <p class="product-brand">{{ product.brand }}</p>
+            <p class="product-price">{{ product.price }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="shop" onclick="history.back()">
+        <b>BACK</b>
+    </button>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+  <section class="section gradient-shell shop-section">
+    <div class="page-shell">
+      <header class="section-header">
+        <h1 class="section-title">Shop by Category</h1>
+        <p class="section-description">Pick your vibe—bestsellers, festive shines, French classics, and more.</p>
+      </header>
+      <div class="shop-grid">
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'seller' %}">
+            <img src="{% static 'images/red.jpg' %}" alt="Best seller press-on nails">
+          </a>
+          <a class="shop-card__cta" href="{% url 'seller' %}">
+            <span>Best Seller</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'festiv' %}">
+            <img src="{% static 'images/Boho Nails.jpg' %}" alt="Festive special nails">
+          </a>
+          <a class="shop-card__cta" href="{% url 'festiv' %}">
+            <span>Festive Special</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'french' %}">
+            <img src="{% static 'images/fre.webp' %}" alt="French nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'french' %}">
+            <span>French Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'wear' %}">
+            <img src="{% static 'images/white.jpg' %}" alt="Casual wear nails">
+          </a>
+          <a class="shop-card__cta" href="{% url 'wear' %}">
+            <span>Casual Wear</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'ombre' %}">
+            <img src="{% static 'images/redwh.webp' %}" alt="Ombre nails">
+          </a>
+          <a class="shop-card__cta" href="{% url 'ombre' %}">
+            <span>Ombre Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gradient-shell shop-section">
+    <div class="page-shell">
+      <header class="section-header">
+        <h2 class="section-title">Shop by Occasion</h2>
+        <p class="section-description">Curated sets for holidays, weddings, parties, and boardroom moments.</p>
+      </header>
+      <div class="shop-grid">
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'holiday' %}">
+            <img src="{% static 'images/holiday.jpg' %}" alt="Holiday nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'holiday' %}">
+            <span>Holiday Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'party' %}">
+            <img src="{% static 'images/party.jpg' %}" alt="Party nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'party' %}">
+            <span>Party Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'wedding' %}">
+            <img src="{% static 'images/flow.jpg' %}" alt="Wedding nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'wedding' %}">
+            <span>Wedding Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'formal' %}">
+            <img src="{% static 'images/almond.jpg' %}" alt="Formal nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'formal' %}">
+            <span>Formal Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gradient-shell shop-section">
+    <div class="page-shell">
+      <header class="section-header">
+        <h2 class="section-title">Shop by Length</h2>
+        <p class="section-description">Select the length that fits your lifestyle, from minimal to dramatic.</p>
+      </header>
+      <div class="shop-grid">
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'short' %}">
+            <img src="{% static 'images/short.webp' %}" alt="Short nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'short' %}">
+            <span>Short Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'medium' %}">
+            <img src="{% static 'images/medium.webp' %}" alt="Medium nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'medium' %}">
+            <span>Medium Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'long' %}">
+            <img src="{% static 'images/long.webp' %}" alt="Long nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'long' %}">
+            <span>Long Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gradient-shell shop-section">
+    <div class="page-shell">
+      <header class="section-header">
+        <h2 class="section-title">Shop by Shape</h2>
+        <p class="section-description">Find your favorite silhouette—almond, round, square, or stiletto sharp.</p>
+      </header>
+      <div class="shop-grid">
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'almond' %}">
+            <img src="{% static 'images/almon.webp' %}" alt="Almond nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'almond' %}">
+            <span>Almond Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'round' %}">
+            <img src="{% static 'images/round.jpg' %}" alt="Round nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'round' %}">
+            <span>Round Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'square' %}">
+            <img src="{% static 'images/square.webp' %}" alt="Square nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'square' %}">
+            <span>Square Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="shop-card">
+          <a class="shop-card__media" href="{% url 'stiletto' %}">
+            <img src="{% static 'images/stiletto.webp' %}" alt="Stiletto nail set">
+          </a>
+          <a class="shop-card__cta" href="{% url 'stiletto' %}">
+            <span>Stiletto Nails</span><i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
+
+{% block content %}
+  <section class="section auth-section">
+    <div class="page-shell auth-wrapper">
+      <div class="auth-card">
+        <h1>Create Account</h1>
+        <p class="auth-subtitle">
+          Save your sizing, build wishlists, and receive early access to new drops.
+        </p>
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="auth-alert auth-alert--{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="post" class="auth-form">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="signup-username">Username</label>
+            <input class="form-input" id="signup-username" type="text" name="username" placeholder="Username" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email</label>
+            <input class="form-input" id="signup-email" type="email" name="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input class="form-input" id="signup-password" type="password" name="password" placeholder="Password" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-first">First Name</label>
+            <input class="form-input" id="signup-first" type="text" name="firstname" placeholder="Firstname" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-last">Last Name</label>
+            <input class="form-input" id="signup-last" type="text" name="lastname" placeholder="Lastname" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+
+        <p class="auth-switch">
+          Already have an account?
+          <a href="{% url 'log_in' %}">Log in here</a>
+        </p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

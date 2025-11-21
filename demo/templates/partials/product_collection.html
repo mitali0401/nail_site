@@ -1,0 +1,50 @@
+{% comment %}
+Reusable section for displaying a responsive grid of products.
+Accepts variables:
+- section_title (required)
+- section_description (optional)
+- section_eyebrow (optional)
+- products (required)
+- back_url_name (optional django url name)
+- back_label (optional)
+{% endcomment %}
+
+<section class="section gradient-shell collection-section">
+  <div class="page-shell">
+    <header class="section-header">
+      {% if section_eyebrow %}
+        <p class="section-eyebrow">{{ section_eyebrow }}</p>
+      {% endif %}
+      <h1 class="section-title">{{ section_title }}</h1>
+      {% if section_description %}
+        <p class="section-description">{{ section_description }}</p>
+      {% endif %}
+    </header>
+
+    <div class="product-grid">
+      {% for product in products %}
+        <article class="product-card">
+          <a class="product-card__media" href="{% url 'details' product.id %}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          </a>
+          <div class="product-card__body">
+            <p class="product-card__title">{{ product.name }}</p>
+            <p class="product-card__brand">{{ product.brand }}</p>
+            <p class="product-card__price">₹{{ product.price }}</p>
+          </div>
+        </article>
+      {% empty %}
+        <p class="product-grid__empty">Fresh designs are being painted. Check back soon!</p>
+      {% endfor %}
+    </div>
+
+    <div class="section-actions">
+      {% if back_url_name %}
+        <a class="btn btn-ghost" href="{% url back_url_name %}">
+          {{ back_label|default:"Back to Shop" }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/details.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="details-container">
+    <div class="details-wrapper">
+
+        <!-- Product Image -->
+        <div class="image-section">
+            <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+
+        <!-- Product Details -->
+        <div class="details-content">
+
+            <p class="brand-name">{{ product.brand }}</p>
+            <p class="product-title"><b>{{ product.name }}</b></p>
+
+            <!-- FEATURES -->
+            <div class="features">
+                <div class="feature-item">
+                    <img src="{% static 'images/refresh.svg' %}" alt="Reusable">
+                    <p>REUSABLE</p>
+                </div>
+                <div class="feature-item">
+                    <img src="{% static 'images/leaf.svg' %}" alt="Long Lasting">
+                    <p>LONG LASTING</p>
+                </div>
+                <div class="feature-item">
+                    <img src="{% static 'images/return.svg' %}" alt="Non Returnable">
+                    <p>NON RETURNABLE</p>
+                </div>
+            </div>
+
+            <!-- LENGTH OPTIONS -->
+            <p class="section-title">Choose Length of Nails</p>
+            <div class="button-group length-group">
+                <button class="option-btn">Same as image</button>
+                <button class="option-btn">Short</button>
+                <button class="option-btn">Extra Short</button>
+            </div>
+            <div class="button-group length-group">
+                <button class="option-btn">Medium</button>
+                <button class="option-btn">Long</button>
+            </div>
+
+            <!-- SHAPE OPTIONS -->
+            <p class="section-title">Choose Shape of Nails</p>
+            <div class="button-group shape-group">
+                <button class="option-btn">Same as image</button>
+                <button class="option-btn">Almond</button>
+                <button class="option-btn">Round</button>
+                <button class="option-btn">Square</button>
+            </div>
+            <div class="button-group shape-group">
+                <button class="option-btn">Stiletto</button>
+                <button class="option-btn">Coffin</button>
+            </div>
+
+            <!-- QUANTITY -->
+            <p class="section-title">Quantity</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="quantity-pill">
+                    <button type="submit" name="decrement" class="qty-btn">−</button>
+                    <input type="text" name="quantity" value="{{ form.quantity.value }}" readonly class="qty-display">
+                    <button type="submit" name="increment" class="qty-btn">+</button>
+                </div>
+            </form>
+
+            <!-- CART BUTTONS -->
+            <div>
+                <div id="cart-msg" class="cart-message"></div>
+                <button type="button" value="{{ product.id }}" id="add-cart" class="add">Add to Cart</button>
+                <button type="button" value="{{ product.id }}" id="buy-now" class="buy">Buy Now</button>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="product-description">
+                <p><b>Handmade Press-On Nails – crafted with premium UV gel polish on real gel bases. 100% hand-painted, reusable and long-lasting.</b></p>
+                <p><b>Care:</b> Remove gently with warm water or cuticle oil. Avoid harsh chemicals.</p>
+                <p><b>Manufactured & Marketed By:</b><br>MANALI NAILS</p>
+                <p><b>Country of Origin:</b> India</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+
+    // --- Add to Cart ---
+    $('#add-cart').click(function() {
+        let productId = $(this).val();
+        let quantity = $('.qty-display').val();
+
+        $.ajax({
+            url: "{% url 'add_to_cart' %}",
+            method: "POST",
+            data: {
+                product_id: productId,
+                quantity: quantity,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(response) {
+                $('#cart-msg')
+                    .html(`${response.message} <a href="{% url 'view_cart' %}" class="cart-link">View cart</a>`)
+                    .fadeIn().delay(2500).fadeOut();
+            }
+        });
+    });
+
+    // --- Buy Now ---
+    $('#buy-now').click(function() {
+        let productId = $(this).val();
+        let quantity = $('.qty-display').val();
+
+        $.ajax({
+            url: "{% url 'add_to_cart' %}",
+            method: "POST",
+            data: {
+                product_id: productId,
+                quantity: quantity,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function() {
+                window.location.href = "{% url 'buy' %}";
+            }
+        });
+    });
+
+    // Store length + shape in localStorage
+      let selectedLength = "Same as image";
+let selectedShape = "Same as image";
+
+// When length button clicked
+$('.button-group .option-btn').click(function() {
+  // detect which section this button belongs to
+  let parentSection = $(this).closest('.section-title').text().trim();
+
+  // highlight selected button
+  $(this).siblings().css({
+    "background": "transparent",
+    "color": "black"
+  });
+  $(this).css({
+    "background": "black",
+    "color": "white"
+  });
+
+  // assign based on section
+  if ($(this).parent().prevAll('.section-title:contains("Length")').length) {
+    selectedLength = $(this).text();
+  } else if ($(this).parent().prevAll('.section-title:contains("Shape")').length) {
+    selectedShape = $(this).text();
+  }
+});
+    document.querySelectorAll(".length-group .option-btn").forEach(btn => {
+        btn.addEventListener("click", () =>
+            localStorage.setItem("selectedLength", btn.textContent.trim())
+        );
+    });
+
+    document.querySelectorAll(".shape-group .option-btn").forEach(btn => {
+        btn.addEventListener("click", () =>
+            localStorage.setItem("selectedShape", btn.textContent.trim())
+        );
+    });
+
+});
+</script>
+
+{% endblock %}

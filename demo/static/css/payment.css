@@ -1,0 +1,104 @@
+.payment-section {
+  background: linear-gradient(124deg, rgba(255, 255, 255, 1) 0%, rgba(155, 155, 191, 0.25) 100%);
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.surface-card {
+  border-radius: 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.payment-summary h2 {
+  margin-top: 0;
+}
+
+.price-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.price-summary p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.price-summary h3 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.secured {
+  padding: 0.85rem 1rem;
+  border-radius: 1rem;
+  background: rgba(17, 28, 68, 0.08);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.panel-header h3 {
+  margin: 0;
+}
+
+.panel-header p {
+  margin: 0.25rem 0 0;
+  color: var(--color-text-muted);
+}
+
+.details-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.detail-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: var(--color-text-muted);
+}
+
+.upi-box {
+  text-align: center;
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+}
+
+.upi-box img {
+  width: 220px;
+  max-width: 100%;
+  margin: 0.75rem auto;
+  display: block;
+}
+
+.scan-text,
+.support-text {
+  margin: 0.35rem 0;
+  color: var(--color-text-muted);
+}
+
+.pay-now {
+  width: 100%;
+  margin-top: 0.75rem;
+}

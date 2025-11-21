@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart_extras %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section cart-section">
+  <div class="page-shell">
+    <div class="surface-card cart-card">
+      <h1>Your Shopping Cart</h1>
+
+      {% if cart_items %}
+        <div class="cart-table-wrapper">
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in cart_items %}
+                <tr>
+                  <td class="product-info">
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    <div>
+                      <p class="product-name">{{ item.product.name }}</p>
+                    </div>
+                  </td>
+                  <td class="center">{{ item.quantity }}</td>
+                  <td class="center">₹{{ item.product.price|floatformat:2 }}</td>
+                  <td class="center">₹{{ item.product.price|mul:item.quantity|floatformat:2 }}</td>
+                  <td class="center">
+                    <form method="post" action="{% url 'remove_from_cart' item.id %}">
+                      {% csrf_token %}
+                      <button type="submit" class="remove-btn">Remove</button>
+                    </form>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cart-summary">
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <strong>₹{{ total|floatformat:2 }}</strong>
+          </div>
+          <p class="summary-note">Taxes and shipping calculated at checkout.</p>
+          <div class="cart-actions">
+            <a class="btn btn-outline-dark" href="{% url 'shop' %}">Continue Shopping</a>
+            <a class="btn btn-primary" href="{% url 'buy' %}">Proceed to Checkout</a>
+          </div>
+        </div>
+      {% else %}
+        <p class="empty-msg">Your cart is empty. Browse the shop to add your next set!</p>
+        <div class="cart-actions">
+          <a class="btn btn-primary" href="{% url 'shop' %}">Shop Designs</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

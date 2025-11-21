@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/payment.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section payment-section">
+  <div class="page-shell payment-grid">
+    <div class="payment-summary surface-card">
+      <h2>MANALI NAILS</h2>
+      <div class="price-summary">
+        <p>Total Due</p>
+        <h3>₹{{ total|floatformat:2 }}</h3>
+      </div>
+      <div class="user-info">
+        <i class="fa-solid fa-user"></i>
+        <span>Paying as {{ phone }}</span>
+      </div>
+      <div class="secured">
+        <p>Secured by <strong>Razorpay</strong></p>
+      </div>
+    </div>
+
+    <div class="payment-panel surface-card">
+      <header class="panel-header">
+        <h3>Payment Details</h3>
+        <p>Finalize your order by scanning the QR from any UPI app.</p>
+      </header>
+
+      <div class="details-grid">
+        <div>
+          <p class="title">Your Details</p>
+          <ul class="detail-list">
+            <li>{{ firstname }} {{ lastname }}</li>
+            <li>{{ country }}</li>
+            <li>{{ city }}</li>
+          </ul>
+        </div>
+        <div class="upi-box">
+          <p><strong>UPI QR</strong></p>
+          <img src="{% static 'images/QR.jpg' %}" alt="UPI QR code">
+          <p class="scan-text">Scan using Google Pay, PhonePe, Paytm, or any UPI app.</p>
+          <p class="support-text">Need help? Call +91 87803 08551</p>
+          <button class="btn btn-primary pay-now">Pay ₹{{ total|floatformat:2 }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/long.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="seller-section">
+
+    <h1 class="seller-title">Long Nails</h1>
+
+    <div class="seller-grid">
+        {% for product in products %}
+        <div class="seller-card">
+            <a href="{% url 'details' product.id %}">
+                <img class="seller-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+
+            <p class="seller-name"><b>{{ product.name }}</b></p>
+            <p class="seller-brand">{{ product.brand }}</p>
+            <p class="seller-price">{{ product.price }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="btn-wrapper">
+        <a href="{% url 'shop' %}">
+            <button class="shop-btn">BACK</button>
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+.collection-section {
+  color: #fff;
+}
+
+.collection-section .section-title {
+  color: #fefefe;
+}
+
+.collection-section .section-description,
+.collection-section .section-eyebrow {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.collection-section .product-card {
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.collection-section .product-card__brand {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.collection-section .product-card__price {
+  color: #ffe082;
+}
+
+.collection-section .section-actions .btn-ghost {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  .collection-section .section-header {
+    text-align: center;
+  }
+}
+

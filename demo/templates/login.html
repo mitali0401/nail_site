@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
+
+{% block content %}
+  <section class="section auth-section">
+    <div class="page-shell auth-wrapper">
+      <div class="auth-card">
+        <h1>Login</h1>
+        <p class="auth-subtitle">Sign in to save sizes, track orders, and build your mani closet.</p>
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="auth-alert auth-alert--{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="post" class="auth-form">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input class="form-input" id="username" type="text" name="username" placeholder="Enter username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-input" id="password" type="password" name="password" placeholder="Enter password" required>
+            <p><a style="color: red;" href="{% url 'password_reset' %}">Forget Password</a></p>
+          </div>
+          <button style="margin-top: -18px;" type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <p class="auth-switch">
+          New here?
+          <a href="{% url 'sign_up' %}">Create an account</a>
+        </p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

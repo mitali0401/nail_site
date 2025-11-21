@@ -1,0 +1,278 @@
+/* ================== GLOBAL LAYOUT ================== */
+.details-container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.details-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* ================== PRODUCT IMAGE ================== */
+.image-section {
+    flex: 1;
+    min-width: 320px;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+/* ================== PRODUCT CONTENT ================== */
+.details-content {
+    flex: 1;
+    min-width: 320px;
+    max-width: 600px;
+}
+
+.brand-name {
+    font-size: 20px;
+    color: #6e6e6e;
+}
+
+.product-title {
+    font-size: 40px;
+    font-family: 'Quintessential', serif;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+/* ================== FEATURES ================== */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.feature-item {
+    text-align: center;
+    width: 100px;
+}
+
+.feature-item img {
+    width: 50px;
+    height: 50px;
+}
+
+.feature-item p {
+    font-size: 16px;
+    margin-top: 8px;
+    margin-left: -60px;
+}
+
+/* ================== OPTIONS ================== */
+.section-title {
+    font-size: 18px;
+    margin-top: 25px;
+    color: #333;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.option-btn {
+    padding: 10px 18px;
+    background: #f3f3f3;
+    border: 1px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.option-btn:hover,
+.option-btn.active {
+    background: black;
+    color: white;
+}
+
+/* ================== QUANTITY ================== */
+.quantity-pill {
+    display: inline-flex;
+    border: 2px solid #000;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.qty-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    background: #fff;
+}
+
+.qty-display {
+    width: 50px;
+    text-align: center;
+    font-size: 18px;
+    border: none;
+    background: #fff;
+}
+
+/* ================== CART BUTTONS ================== */
+.add, .buy {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-top: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add {
+    background: #fff;
+    border: 2px solid black;
+}
+
+.add:hover {
+    background: black;
+    color: white;
+}
+
+.buy {
+    background: black;
+    color: white;
+    border: 2px solid black;
+}
+
+.buy:hover {
+    background: white;
+    color: black;
+}
+
+.cart-message {
+    color: green;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+/* ================== PRODUCT DESCRIPTION ================== */
+.product-description {
+    margin-top: 25px;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+
+/* ============================================================
+   =============== 📱 MOBILE RESPONSIVE (0–600px) ==============
+   ============================================================ */
+@media (max-width: 600px) {
+
+    .details-container {
+       text-align: center;
+    }
+
+    .product-title {
+        font-size: 28px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .features {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .feature-item {
+        width: 90px;
+    }
+    .button-group {
+        justify-content: center;
+    }
+    .feature-item img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .option-btn {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+
+    .qty-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .qty-display {
+        width: 45px;
+        font-size: 16px;
+    }
+
+    .add, .buy {
+        font-size: 16px;
+        padding: 12px;
+        width: 100%;
+    }
+}
+
+
+/* ============================================================
+   =============== 📲 TABLET RESPONSIVE (600–900px) ============
+   ============================================================ */
+@media (min-width: 600px) and (max-width: 900px) {
+
+    .product-title {
+        font-size: 32px;
+    }
+    .button-group {
+        justify-content: center;
+    }
+    .details-container {
+       text-align: center;
+    }
+    .feature-item {
+        width: 110px;
+    }
+    .features {
+        justify-content: center;
+        gap: 15px;
+    }
+    .option-btn {
+        font-size: 15px;
+    }
+
+    .details-wrapper {
+        gap: 30px;
+        text-align: center;
+    }
+}
+
+
+/* ============================================================
+   =============== 💻 DESKTOP LARGE SCREENS (900px+) ===========
+   ============================================================ */
+@media (min-width: 900px) {
+    .product-title {
+        font-size: 42px;
+    }
+
+    .feature-item {
+        width: 120px;
+    }
+
+    .details-wrapper {
+        gap: 50px;
+    }
+}

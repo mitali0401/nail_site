@@ -1,0 +1,50 @@
+from django.urls import path
+from .import views
+from django.contrib.auth import views as auth_views
+
+urlpatterns = [
+    path('' , views.navbar , name='navbar'),
+    path('sign_up/',views.sign_up , name='sign_up'),
+    path('log_in/',views.log_in , name='log_in'),
+    path('log_out/',views.log_out, name='log_out'),
+    path('shop/', views.shop , name='shop'),
+    path('seller/',views.seller , name='seller'),
+    path('festiv/',views.festiv , name='festiv'),
+    path('french/',views.french , name='french'),
+    path('wear/',views.wear,name='wear'),
+    path('ombre/',views.ombre,name='ombre'),
+    path('holiday/',views.holiday,name='holiday'),
+    path('party/',views.party , name='party'),
+    path('wedding/',views.wedding,name='wedding'),
+    path('formal/',views.formal,name='formal'),
+    path('short/',views.short,name='short'),
+    path('medium/',views.medium,name='medium'),
+    path('long/',views.long,name='long'),
+    path('almond/',views.almond,name='almond'),
+    path('round/',views.round,name='round'),
+    path('square/',views.square,name='square'),
+    path('stiletto/',views.stiletto,name='stiletto'),
+    path('all/',views.all , name='all'),
+    path('contact/',views.contact,name='contact'),
+    path('details/<int:id>/',views.details , name='details'),
+    path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
+    path('cart/', views.view_cart, name='view_cart'),
+    path('remove-from-cart/<int:cart_id>/', views.remove_from_cart, name='remove_from_cart'),
+    path('buy/',views.buy,name='buy'),
+    path('payment/',views.payment,name='payment'),
+     path("password-reset/", 
+         auth_views.PasswordResetView.as_view(template_name="password_reset.html"), 
+         name="password_reset"),
+
+    path("password-reset/done/", 
+         auth_views.PasswordResetDoneView.as_view(template_name="password_reset_done.html"), 
+         name="password_reset_done"),
+
+    path("password-reset-confirm/<uidb64>/<token>/", 
+         auth_views.PasswordResetConfirmView.as_view(template_name="password_reset_confirm.html"), 
+         name="password_reset_confirm"),
+
+    path("password-reset-complete/", 
+         auth_views.PasswordResetCompleteView.as_view(template_name="password_reset_complete.html"), 
+         name="password_reset_complete"),
+]

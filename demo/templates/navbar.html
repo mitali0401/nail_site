@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock %}
+{% block content %}
+  <section class="hero hero--primary">
+    <div class="page-shell hero__inner">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Beauty at your fingertips</p>
+        <h1 class="hero__title">Beauty at Your Fingertips 💅</h1>
+        <p class="hero__subtitle">
+          Elegant nail designs, modern shapes, and relaxing press-on rituals crafted for every mood.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn-primary" href="{% url 'shop' %}">Shop Now</a>
+          <a class="btn btn-outline-dark" href="{% url 'all' %}">Browse Gallery</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gradient-shell hero-collection">
+    <div class="page-shell">
+      <header class="section-header">
+        <p class="section-eyebrow">Curated Drops</p>
+        <h2 class="section-title">Our Collection</h2>
+        <p class="section-description">
+          A rotating edit of hand-painted press-ons for every invite—from daily glam to red carpet sparkle.
+        </p>
+      </header>
+      <div class="product-grid hero-products">
+        {% for product in products %}
+          <article class="product-card">
+            <a class="product-card__media" href="{% url 'details' product.id %}">
+              <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+            <div class="product-card__body">
+              <p class="product-card__title">{{ product.name }}</p>
+              <p class="product-card__brand">{{ product.brand }}</p>
+              <p class="product-card__price">₹{{ product.price }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+      <div class="section-actions">
+        <a class="btn btn-ghost" href="{% url 'all' %}">View the Full Gallery</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why-section">
+    <div class="page-shell">
+      <header class="section-header text-center">
+        <h2 class="section-title">Why We Slay</h2>
+        <p class="section-description">
+          Welcome to MANALI NAILS—handcrafted press-ons designed for trendsetters, go-getters,
+          and glow-up lovers who want salon drama without the appointment.
+        </p>
+      </header>
+      <div class="why-grid">
+        <article class="surface-card">
+          <h3>Custom Fit</h3>
+          <p>Choose your preferred shape and length for every set. We size each nail specifically for you.</p>
+        </article>
+        <article class="surface-card">
+          <h3>Handmade Luxury</h3>
+          <p>Every set is painted by hand with premium gel systems—no plastic shortcuts, all couture finish.</p>
+        </article>
+        <article class="surface-card">
+          <h3>Reusable & Ready</h3>
+          <p>Beginner-friendly application kits, reusable up to 20 times, and ready in minutes.</p>
+        </article>
+        <article class="surface-card">
+          <h3>Always On Trend</h3>
+          <p>From viral cat-eye gradients to minimal chic, our drops are inspired by runway and streetstyle.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="page-shell">
+      <header class="section-header text-center">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-description">Everything you need to know before your next mani moment.</p>
+      </header>
+      <div class="faq-grid">
+        <div class="faq-media">
+          <img src="{% static 'images/m.jpg' %}" alt="Artist painting press-on nails">
+        </div>
+        <div class="faq-details">
+          <details>
+            <summary><i class="fa-solid fa-leaf"></i> How to use press-on nails?</summary>
+            <p>
+              1. Prep nails by pushing back cuticles, buffing lightly, and cleansing with the alcohol wipe.<br>
+              2. Match each press-on to your nail bed and set aside in order.<br>
+              3. Apply glue or tabs, align carefully, and press for 15 seconds. Instant salon nails!
+            </p>
+          </details>
+          <details>
+            <summary><i class="fa-solid fa-leaf"></i> Do press-ons harm natural nails?</summary>
+            <p>
+              Not when removed properly. Soak nails, slide off gently, and keep your natural nails nourished.
+            </p>
+          </details>
+          <details>
+            <summary><i class="fa-solid fa-leaf"></i> What comes in the kit?</summary>
+            <p>
+              Every order includes a cuticle pusher, nail glue, adhesive tabs, and a mini buffer for seamless application.
+            </p>
+          </details>
+          <details>
+            <summary><i class="fa-solid fa-leaf"></i> Can I reuse the nails?</summary>
+            <p>
+              Absolutely—3-4 times with glue and up to 20 times with tabs, depending on care.
+            </p>
+          </details>
+          <details>
+            <summary><i class="fa-solid fa-leaf"></i> Will they fit me?</summary>
+            <p>
+              Yes! Send us a quick sizing photo using our coin technique and we craft a set tailored to you.
+            </p>
+          </details>
+          <details>
+            <summary><i class="fa-solid fa-leaf"></i> How do I remove them?</summary>
+            <p>
+              Soak in warm, soapy water for 5–10 minutes, add a little cuticle oil, and gently lift with the pusher.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

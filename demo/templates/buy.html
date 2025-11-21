@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart_extras %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/buy.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section checkout-section">
+  <div class="page-shell checkout-layout">
+    <div class="checkout-panel">
+      <div class="checkout-email">
+        <span>Signed in as</span>
+        <p>{{ user.email|default:"Update your profile email" }}</p>
+      </div>
+
+      <form method="post" action="{% url 'buy' %}" class="checkout-form" id="checkout-form">
+        {% csrf_token %}
+        <fieldset class="delivery-options">
+          <legend>Delivery</legend>
+          <label class="delivery-option">
+            <input type="radio" name="delivery_method" value="ship" checked>
+            <div class="option-content">
+              <span>Ship to me</span>
+              <i class="fa-solid fa-truck"></i>
+            </div>
+          </label>
+          <label class="delivery-option">
+            <input type="radio" name="delivery_method" value="pickup">
+            <div class="option-content">
+              <span>Pick up</span>
+              <i class="fa-solid fa-store"></i>
+            </div>
+          </label>
+        </fieldset>
+
+        <div class="pickup-info" data-delivery-panel="pickup">
+          <p class="pickup-title">Pickup location</p>
+          <p class="pickup-address">Santivan Society Part-1, Jakatnaka, Surat</p>
+        </div>
+
+        <div class="address-grid">
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" class="form-input" id="country" name="country" placeholder="Country" required>
+          </div>
+          <div class="split">
+            <div class="form-group">
+              <label for="firstname">First name</label>
+              <input type="text" class="form-input" id="firstname" name="firstname" placeholder="Firstname" required>
+            </div>
+            <div class="form-group">
+              <label for="lastname">Last name</label>
+              <input type="text" class="form-input" id="lastname" name="lastname" placeholder="Lastname" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-input" id="address" name="address" placeholder="Street address" required>
+          </div>
+          <div class="split three-up">
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" class="form-input" id="city" name="city" placeholder="City" required>
+            </div>
+            <div class="form-group">
+              <label for="state">State</label>
+              <input type="text" class="form-input" id="state" name="state" placeholder="State" required>
+            </div>
+            <div class="form-group">
+              <label for="pin">PIN</label>
+              <input type="text" class="form-input" id="pin" name="pin" placeholder="PIN code" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-input" id="phone" name="phone" placeholder="+91 87803 08551" required>
+          </div>
+        </div>
+
+        <p class="note">Text me with news and offers · +91 87803 08551</p>
+        <button class="btn btn-primary" type="submit">Buy Now</button>
+      </form>
+    </div>
+
+    <aside class="checkout-summary">
+      <h2>Order Summary</h2>
+      {% for item in cart_items %}
+        <div class="cart-item">
+          <div class="cart-item-img">
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+            <span class="quantity-badge">{{ item.quantity }}</span>
+          </div>
+          <div class="cart-item-details">
+            <p class="item-name">{{ item.product.name }}</p>
+            <p class="item-desc selected-options">same as image / {{ item.product.variant|default:"same as image" }}</p>
+          </div>
+          <div class="cart-item-price">
+            ₹{{ item.product.price|mul:item.quantity|floatformat:2 }}
+          </div>
+        </div>
+      {% endfor %}
+
+      <div class="discount-box">
+        <input type="text" placeholder="Discount code" class="discount-input">
+        <button class="apply-btn" type="button">Apply</button>
+      </div>
+
+      <div class="price-summary">
+        <p>Subtotal · {{ cart_items|length }} items <span>₹{{ total|floatformat:2 }}</span></p>
+        <p>Shipping <span class="shipping-info">Enter address to calculate</span></p>
+        <hr>
+        <p class="total"><strong>Total</strong> <span><strong>₹{{ total|floatformat:2 }}</strong></span></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const deliveryOptions = document.querySelectorAll('input[name="delivery_method"]');
+    const pickupInfo = document.querySelector('[data-delivery-panel="pickup"]');
+
+    function togglePickupInfo() {
+      const isPickup = Array.from(deliveryOptions).some(opt => opt.checked && opt.value === 'pickup');
+      pickupInfo.classList.toggle('active', isPickup);
+    }
+
+    deliveryOptions.forEach(option => option.addEventListener('change', togglePickupInfo));
+    togglePickupInfo();
+
+    const length = localStorage.getItem("selectedLength") || "same as image";
+    const shape = localStorage.getItem("selectedShape") || "same as image";
+    document.querySelectorAll(".selected-options").forEach(el => {
+      el.textContent = `${length} / ${shape}`;
+    });
+  });
+</script>
+{% endblock %}
