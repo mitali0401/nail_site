@@ -27,7 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://nail-site-2.onrender.com'
+    'https://nail-site-1.onrender.com',
 ]
 
 # Application definition
