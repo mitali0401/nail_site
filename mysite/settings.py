@@ -24,14 +24,10 @@ SECRET_KEY = 'django-insecure-be6+mhu%kj5#n-+o24ry@#i=%24d7xai%agpva1o=zd*nghttb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'nail-site-zlpa.onrender.com',
-    'localhost',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://nail-site-zlpa.onrender.com'
+    'https://nail-site-1.onrender.com'
 ]
 
 # Application definition
