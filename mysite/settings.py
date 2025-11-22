@@ -24,7 +24,11 @@ SECRET_KEY = 'django-insecure-be6+mhu%kj5#n-+o24ry@#i=%24d7xai%agpva1o=zd*nghttb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'nail-site-1.onrender.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
